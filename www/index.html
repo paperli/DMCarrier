@@ -21,23 +21,42 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+        
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" href="styles/kendo.mobile.min.css" type="text/css" />
+        <link href="css/kendoui/kendo.mobile.all.min.css" rel="stylesheet">
+        <script type="text/javascript" src="cordova-2.2.0.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/kendo.all.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+        <div data-role="layout" data-id="main-layout">
+            <div data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
+                </div>
+            </div>
+            <div data-role="footer">
+                <div data-role="tabstrip">
+                    <a data-icon="home" href="#home">HOME</a>
+                    <a data-icon="settings" href="#settings">SETTINGS</a>
+                </div>
             </div>
         </div>
-        <script type="text/javascript" src="cordova-2.2.0.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+            
+        <div data-role="view" data-show="MYAPP.show" data-layout="main-layout" id="home" data-title="Home">
+            <script type="text/x-kendo-templ" id="reddit-template">
+                #:title #
+            </script>
+            <ul data-role="listview" data-style="inset" data-template="reddit-template" data-source="MYAPP.reddit"></ul>
+        </div>
+        
+        <div data-role="view" data-layout="main-layout" id="settings" data-title="Settings">
+            <p>Settings</p>
+        </div>
+        
+        
     </body>
 </html>

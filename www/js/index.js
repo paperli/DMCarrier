@@ -16,6 +16,34 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+var MYAPP = MYAPP || {};
+
+MYAPP.run = (function(){
+    MYAPP.app = new kendo.mobile.Application(document.body, { transition: "slide" });
+});
+
+MYAPP.reddit = kendo.data.DataSource.create({
+                                            transport:{
+                                                read: "http://www.reddit.com/r/programming.json"
+                                            },
+                                            schema: {
+                                                data:"data.children",
+                                                fields: {
+                                            title:"data.title"
+                                                }
+                                            }
+});
+
+(function(){
+ if (navigator.userAgent.indexOf('Browzr') > -1){
+    // blackberry
+    setTimeout(MYAPP.run,250);
+ } else {
+ document.addEventListener('deviceready',MYAPP.run, false);
+ }
+})();
+
 var app = {
     // Application Constructor
     initialize: function() {
