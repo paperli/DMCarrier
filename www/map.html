@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ -->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.0.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+        <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
+        <script type="text/javascript" src="cordova-2.2.0.js"></script>
+        <script type="text/javascript" src="MapKit.js"></script>
+        <script type="text/javascript" src="js/map.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </head>
+    <body>
+        <div class="app">
+            <div data-role="page">
+                
+                <div data-role="header">
+                    <h1>Map</h1>
+                </div><!-- /header -->
+                
+                <div data-role="content">
+                     
+                </div><!-- /content -->
+                <script>
+                    
+                    var onSuccess = function(position) {
+                        mapOptions.lat = position.coords.latitude;
+                        mapOptions.lon = position.coords.longitude;
+                        /*alert('Latitude: '          + position.coords.latitude          + '\n' +
+                              'Longitude: '         + position.coords.longitude         + '\n' +
+                              'Altitude: '          + position.coords.altitude          + '\n' +
+                              'Accuracy: '          + position.coords.accuracy          + '\n' +
+                              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                              'Heading: '           + position.coords.heading           + '\n' +
+                              'Speed: '             + position.coords.speed             + '\n' +
+                              'Timestamp: '         + position.timestamp                + '\n');*/
+                        showMap();
+                    };
+                    
+                    // onError Callback receives a PositionError object
+                    //
+                    function onError(error) {
+                        alert('code: '    + error.code    + '\n' +
+                              'message: ' + error.message + '\n');
+                    }
+                    
+                    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                    //showMap();
+                </script>
+                <div data-role="footer" data-id="foot" data-position="fixed" class="nav-glyphish-example">
+                    <div data-role="navbar" class="nav-glyphish-example">
+                        <ul>
+                            <li><a data-icon="custom" id="star" href="index.html" onclick="window.plugins.mapKit.destroyMap()">Overview</a></li>
+                            <li><a data-icon="custom" id="map-marker" href="map.html" class="ui-btn-active ui-state-persist">Map</a></li>
+                            <li><a data-icon="custom" id="gear" href="settings.html" onclick="window.plugins.mapKit.destroyMap()">Settings</a></li>
+                        </ul>
+                    </div><!-- /navbar -->
+                </div><!-- /footer -->
+            </div>
+            
+        </div>
+    </body>
+</html>
